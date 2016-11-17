@@ -20,7 +20,13 @@ public class CourseCalculator {
 		enterGrades(examGrades);
 		int totalExamPoints = sumUpGrades(examGrades);
 		displayGrade(examGrades);
-		replaceLowestGradeWith100(examGrades);
+
+		/*
+		 * System.out.println("Do you want to replace your lowest grade? (Y/N)"
+		 * ); String response = sc.nextLine(); if
+		 * (response.equalsIgnoreCase("Y")) {
+		 * replaceLowestGradeWith100(examGrades); }
+		 */
 		displayGrade(examGrades);
 
 		System.out.println("How many quizzes do you have in this course?");
@@ -41,13 +47,10 @@ public class CourseCalculator {
 		int[] finalExamGrade = new int[1];
 		enterGrades(finalExamGrade);
 		int totalFinalExamPoints = sumUpGrades(finalExamGrade);
-
 		sc.close();
-
 		double finalCoursePercentage = calculateAllGrades(totalAttendancePoints, totalExamPoints, examPercentage,
 				totalQuizPoints, quizPercentage, totalAssignmentPoints, assignmentPercentage, totalFinalExamPoints,
 				finalExamPercentage);
-
 		System.out.println("You finished Louis Henry's CSC 1301 course with " + finalCoursePercentage + "%!");
 	}
 
@@ -62,8 +65,13 @@ public class CourseCalculator {
 
 	public static int sumUpGrades(int[] theGrades) {
 		int summedUp = 0;
+		int count = 0;
 		for (int i = 0; i < theGrades.length; i++) {
 			summedUp += theGrades[i];
+			count++;
+		}
+		if (theGrades.length != 0) {
+			summedUp /= count;
 		}
 		return summedUp;
 	}
